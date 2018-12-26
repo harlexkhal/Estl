@@ -9,9 +9,14 @@ int main()
 	m.PushBack("cPP");
 	m.PushBack("Test");
 	m.PushBack("Lets just do more...Enjoying this");
-	Estl::List<std::string> n = m;
+	Estl::List<std::string> n;
+	n = m;
 	
-	std::cout << n[3] << std::endl;
+	Estl::ListIterator<std::string> iterator(m.GetHeadNode());
+
+	++iterator;
+	++iterator;
+	std::cout<<*iterator;
 
 		std::cin.get();
 }

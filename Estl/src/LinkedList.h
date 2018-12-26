@@ -29,6 +29,8 @@ namespace Estl {
 
 		T operator[](int pos);
 
+		NodeLink<T>* GetHeadNode()const;
+
 		~List();
 
 	private:
@@ -39,8 +41,7 @@ namespace Estl {
 		void Copy(NodeLink<T> *&Head);
 	};
 
-
-
+	
 	template <class T>
 	List<T>::List()
 	{
@@ -163,15 +164,15 @@ namespace Estl {
 	template <class T>
 	T List<T>::operator[](int pos)
 	{
-		PrevLinkNode = HeadNode;
+		NodeLink<T>* TrackNode = HeadNode;
 		for (int i = 0; i <= pos; i++)
 		{
 			if (i == pos)
 			{
-				return PrevLinkNode->DATA;
+				return TrackNode->DATA;
 			}
 
-			PrevLinkNode = PrevLinkNode->Next;
+			TrackNode = TrackNode->Next;
 		}
 	}
 
@@ -197,4 +198,43 @@ namespace Estl {
 		NextLinkNode = nullptr;
 		HeadNode = nullptr;
 	}
+
+	template <class T>
+	NodeLink<T>* List<T>::GetHeadNode()const
+	{
+		return HeadNode;
+	}
+
+	//****************************************
+	//Basic List Iterator + Implementation...
+	//****************************************
+
+	template <class T>
+	class ListIterator
+	{
+	public:
+		ListIterator()
+		{
+			Current = nullptr;
+		}
+
+		ListIterator(NodeLink<T>* HeadNode)
+		{
+			Current = HeadNode;
+		}
+
+		void operator++()
+		{
+			Current = Current->Next;
+		}
+
+		T operator*()const
+		{
+			return Current->DATA;
+		}
+
+	private:
+		NodeLink<T>* Current;
+	};
+
 }
