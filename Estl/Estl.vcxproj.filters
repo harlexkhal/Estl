@@ -18,6 +18,9 @@
     <ClInclude Include="Estl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\LinkedList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\LinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>

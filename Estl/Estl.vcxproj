@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClInclude Include="Estl.h" />
     <ClInclude Include="src\LinkedList.h" />
+    <ClInclude Include="src\LinkedList.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp" />

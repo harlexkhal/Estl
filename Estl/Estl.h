@@ -1,2 +1,2 @@
 #pragma once
-#include "src/LinkedList.h"
+#include "src/LinkedList.hpp"
