@@ -19,7 +19,6 @@ int main()
 		n = m;
 
 		Estl::ListIterator<std::string> iterator(m.GetHeadNode());
-
 		std::cout << *iterator << std::endl;
 		++iterator;
 		++iterator;

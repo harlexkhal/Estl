@@ -3,11 +3,15 @@
 namespace Estl {
 
 	template<class T>
-	struct NodeLink 
+	class NodeLink 
 	{
+	private:
 		T DATA;
 		NodeLink* Next;
 		NodeLink* Prev;
+
+		template<class T> friend class List;
+		template<class T> friend class ListIterator;
 	};
 
 	template <class T>
