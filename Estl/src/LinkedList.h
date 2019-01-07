@@ -1,5 +1,7 @@
 #pragma once
 #include <cassert>
+#include <iostream>
+
 namespace Estl {
 
 	template<class T>
@@ -67,7 +69,7 @@ namespace Estl {
 	//****************************************
 
 	template <class T>
-	class ListIterator 
+	class ListIterator
 	{
 	public:
 		ListIterator()

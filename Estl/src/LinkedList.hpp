@@ -66,11 +66,7 @@ namespace Estl {
 	template <class T>
 	bool List<T>::IsEmpty()
 	{
-		if (HeadNode == nullptr)
-			return true;
-
-		else
-			return false;
+		return (HeadNode == nullptr);
 	}
 
 	template <class T>
@@ -142,7 +138,7 @@ namespace Estl {
 		NodeLink<T>* TrackNode = HeadNode;
 
 		if (IsEmpty())
-			assert(false);
+			std::cerr << "Error, Can't Destroy an Empty List" << std::endl; assert(false);
 
 		
 			while (TrackNode != nullptr)
@@ -171,4 +167,38 @@ namespace Estl {
 		this->~List();
 	}
 
+	template <class T>
+	void List<T>::ReverseList()
+	{
+		if (HeadNode != CurrNode)
+		{
+			NodeLink<T>* TrackHeadNode = HeadNode;
+			NodeLink<T>* AheadHelpNode = HeadNode;
+			NodeLink<T>* BehindHelpNode = nullptr;
+			HeadNode = HeadNode->Next;
+			AheadHelpNode->Next = BehindHelpNode;
+			AheadHelpNode->Prev = HeadNode;
+			BehindHelpNode = AheadHelpNode;
+			AheadHelpNode = HeadNode;
+
+			while (HeadNode != nullptr)
+			{
+				HeadNode = HeadNode->Next;
+				AheadHelpNode->Next = BehindHelpNode;
+				AheadHelpNode->Prev = HeadNode;
+				BehindHelpNode = AheadHelpNode;
+				AheadHelpNode = HeadNode;
+			}
+			HeadNode = CurrNode;
+			CurrNode = TrackHeadNode;
+			PrevLinkNode = CurrNode;
+			NextLinkNode = CurrNode;
+		}
+
+		else
+		{
+			std::cerr << "Unable to Reverse just a single item on the List, would cause complications" << std::endl;
+			assert(false);
+		}
+	}
 }
