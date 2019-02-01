@@ -27,6 +27,8 @@ namespace Estl {
 			PrevLinkNode = HeadNode;
 			CurrNode->DATA = Head->DATA;
 			CurrNode->Next = nullptr;
+			iterator_Head.Current = HeadNode;
+			iterator_End.Current = CurrNode->Next;
 			
 		}
 
@@ -39,6 +41,7 @@ namespace Estl {
 			PrevLinkNode = CurrNode;
 			CurrNode->DATA = Head->DATA;
 			CurrNode->Next = nullptr;
+			iterator_End.Current = CurrNode->Next;
 		}
 		Head = Head->Next;
 		Copy(Head);
@@ -81,6 +84,8 @@ namespace Estl {
 			PrevLinkNode = HeadNode;
 			CurrNode->DATA = m_Num;
 			CurrNode->Next = nullptr;
+			iterator_Head.Current = HeadNode;
+			iterator_End.Current = CurrNode->Next;
 		}
 		else
 		{
@@ -91,6 +96,7 @@ namespace Estl {
 			PrevLinkNode = CurrNode;
 			CurrNode->DATA = m_Num;
 			CurrNode->Next = nullptr;
+			iterator_End.Current = CurrNode->Next;
 		}
 
 	}
@@ -105,6 +111,7 @@ namespace Estl {
 			NodeLink<T>* TrackNode;
 			TrackNode = HeadNode;
 			HeadNode = nullptr;
+			iterator_Head.Current = HeadNode;
 			delete TrackNode;
 		}
 
@@ -113,6 +120,7 @@ namespace Estl {
 			NodeLink<T>* TrackNode;
 			TrackNode = HeadNode;
 			HeadNode = HeadNode->Next;
+			iterator_Head.Current = HeadNode;
 			delete TrackNode;
 		}
 	}
@@ -147,18 +155,14 @@ namespace Estl {
 				delete TrackNode;
 				TrackNode = HeadNode;
 			}
-		
+			
 
 		CurrNode = nullptr;
 		PrevLinkNode = nullptr;
 		NextLinkNode = nullptr;
 		HeadNode = nullptr;
-	}
-
-	template <class T>
-	NodeLink<T>* List<T>::GetHeadNode()const
-	{
-		return HeadNode;
+		iterator_Head.Current = NULL;
+		iterator_End.Current = NULL;
 	}
 
 	template <class T>
@@ -193,6 +197,9 @@ namespace Estl {
 			CurrNode = TrackHeadNode;
 			PrevLinkNode = CurrNode;
 			NextLinkNode = CurrNode;
+
+			iterator_Head.Current = HeadNode;
+			iterator_End.Current = CurrNode->Next;
 		}
 
 		else

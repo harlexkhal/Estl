@@ -18,17 +18,15 @@ int main()
 		m.PushBack("it helps to discover if there are any bugs with the List");
 		
 		
-		Estl::List<std::string> n;
+		Estl::List<std::string> n = m;
 		
-		n = m;
-		m.ReverseList();
 		
-
-		Estl::ListIterator<std::string> iterator(m.GetHeadNode());
-		std::cout << *iterator << std::endl;
-		++iterator;
-		++iterator;
-		std::cout << *iterator << std::endl;
+	
+		Estl::List<std::string>::Iterator it = n.Begin();
+		++it;
+		std::cout << *it << std::endl;
+		
+		//TODO create a --iterator, but first fix the link x.end() nullptr to a previous Node;
 
 		
 	

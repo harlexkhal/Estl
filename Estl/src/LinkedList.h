@@ -2,7 +2,10 @@
 #include <cassert>
 #include <iostream>
 
+
+
 namespace Estl {
+	
 
 	template<class T>
 	class NodeLink 
@@ -13,7 +16,6 @@ namespace Estl {
 		NodeLink* Prev;
 
 		template<class T> friend class List;
-		template<class T> friend class ListIterator;
 	};
 
 	template <class T>
@@ -21,6 +23,40 @@ namespace Estl {
 
 	public:
 
+		class Iterator
+		{
+		public:
+			Iterator()
+			{
+				Current = nullptr;
+			}
+
+			Iterator(Iterator& it)
+			{
+				this->Current = it.Current;
+			}
+
+			void operator++()
+			{   
+				Current = Current->Next;
+			}
+
+			T operator*()const
+			{
+				if (Current == nullptr)
+				{
+					std::cerr << "Can't Access a nullptr" << std::endl; assert(false);
+				}
+
+				return Current->DATA;
+			}
+
+
+			NodeLink<T>* Current;
+		};
+
+	public:
+		
 		List();
 
 		List(const List& list);
@@ -37,7 +73,9 @@ namespace Estl {
 
 		T operator[](int pos);
 
-		NodeLink<T>* GetHeadNode()const;
+		Iterator& Begin() {return iterator_Head;}
+
+		Iterator& End()   {return iterator_End;}
 
 		void DestroyList();
 
@@ -55,12 +93,16 @@ namespace Estl {
 
 		~List();
 
+		
 	private:
 		NodeLink<T>* CurrNode;
 		NodeLink<T>* NextLinkNode;
 		NodeLink<T>* PrevLinkNode;
 		NodeLink<T>* HeadNode;
+		Iterator     iterator_Head;
+		Iterator     iterator_End;
 		void Copy(NodeLink<T> *&Head);
+
 	};
 
 
@@ -68,31 +110,5 @@ namespace Estl {
 	//Basic List Iterator + Implementation...
 	//****************************************
 
-	template <class T>
-	class ListIterator
-	{
-	public:
-		ListIterator()
-		{
-			Current = nullptr;
-		}
-
-		ListIterator(NodeLink<T>* HeadNode)
-		{
-			Current = HeadNode;
-		}
-
-		void operator++()
-		{
-			Current = Current->Next;
-		}
-
-		T operator*()const
-		{
-			return Current->DATA;
-		}
-
-	private:
-		NodeLink<T>* Current;
-	};
+	
 }
