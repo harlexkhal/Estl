@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{E556618A-DC36-4B3A-B1BD-41740E83E77F}</ProjectGuid>
     <RootNamespace>Estl</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -119,6 +119,7 @@
     <ClInclude Include="src\Btrees.h" />
     <ClInclude Include="src\LinkedList.h" />
     <ClInclude Include="src\LinkedList.hpp" />
+    <ClInclude Include="src\Vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp" />

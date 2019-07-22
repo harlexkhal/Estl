@@ -31,7 +31,7 @@ namespace Estl {
 				Current = nullptr;
 			}
 
-			Iterator(Iterator& it)
+			Iterator(const Iterator& it)
 			{
 				this->Current = it.Current;
 			}
@@ -71,7 +71,7 @@ namespace Estl {
 
 		void PopLast();
 
-		T operator[](int pos);
+		T& operator[](int pos);
 
 		Iterator& Begin() {return iterator_Head;}
 
@@ -79,11 +79,11 @@ namespace Estl {
 
 		void DestroyList();
 
-		void Insert(int pos);
+		void Insert(int pos, T Data);
 
-		void InsertFirst();
+		void InsertFirst(T Data);
 
-		void InsertLast();
+		void InsertLast(T Data);
 
 		void DeleteElement(int pos);
 

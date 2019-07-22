@@ -69,7 +69,7 @@ namespace Estl {
 	template <class T>
 	bool List<T>::IsEmpty()
 	{
-		return (HeadNode == nullptr);
+		return (HeadNode == nullptr) || (CurrNode == nullptr);
 	}
 
 	template <class T>
@@ -104,7 +104,7 @@ namespace Estl {
 	template <class T>
 	void List<T>::PopFirst()
 	{
-		assert(!HeadNode);
+		assert(!IsEmpty());
 
 		if (HeadNode == CurrNode)
 		{
@@ -125,8 +125,37 @@ namespace Estl {
 		}
 	}
 
+	template<class T>
+	inline void List<T>::PopLast()
+	{
+		assert(!IsEmpty());
+
+		if (CurrNode == HeadNode)
+		{
+			NodeLink<T>* TrackNode;
+			TrackNode = CurrNode;
+			CurrNode = nullptr;     
+			NextLinkNode = nullptr; //For Safety not really necessary. just Ensuring the link is still safe
+			PrevLinkNode = nullptr; //For Safety not really necessary. just Ensuring the link is still safe
+			iterator_End.Current = nullptr;
+			delete TrackNode;	
+		}
+
+		else
+		{
+			NodeLink<T>* TrackNode;
+			TrackNode = CurrNode;
+			CurrNode = CurrNode->Prev;
+			NextLinkNode = CurrNode;
+			PrevLinkNode = CurrNode;
+			CurrNode->Next = nullptr;
+			iterator_End.Current = CurrNode->Next;
+			delete TrackNode;
+		}
+	}
+
 	template <class T>
-	T List<T>::operator[](int pos)
+	T& List<T>::operator[](int pos)
 	{
 		NodeLink<T>* TrackNode = HeadNode;
 		for (int i = 0; i <= pos; i++)
@@ -169,6 +198,99 @@ namespace Estl {
 	void List<T>::DestroyList()
 	{
 		this->~List();
+	}
+
+	template<class T>
+	inline void List<T>::Insert(int pos, T Data)
+	{
+		NodeLink<T>* TrackNode = HeadNode;
+		NodeLink<T>* TrackAhead;
+		NodeLink<T>* TrackPrevious;
+
+		if (pos == 0)
+		{
+			InsertFirst(Data);
+		}
+		//??TO DO**** KEEP TRACK OF LENGTH OR NUMBER OF ELEMENT IN THE LIST*****
+		//TO DO***IF (POSITION) IS >= NUMBER OF ELEMENT OF THE LIST INSERTED DATA IN LAST POSITION OF THE LIST CHANGE <CURRLINKNODE,PREVLINKNODE,&NEXTLINKNODE DATA MEMBERS POSITION>
+		else 
+		{
+			for (int i = 0; i <= pos; i++)
+			{
+				if (i == pos)
+				{
+					TrackAhead = TrackNode;
+					TrackPrevious = TrackNode->Prev;
+					TrackNode = new NodeLink<T>;
+					TrackPrevious->Next = TrackNode;
+					TrackNode->Prev = TrackPrevious;
+					TrackNode->Next = TrackAhead;
+					TrackAhead->Prev = TrackNode;
+					TrackNode->DATA = Data;
+				}
+
+				TrackNode = TrackNode->Next;
+			}
+		}
+	}
+
+	template<class T>
+	inline void List<T>::InsertFirst(T Data)
+	{
+		NodeLink<T>* TrackNode = new NodeLink<T>;
+		TrackNode->Prev = nullptr;
+		TrackNode->Next = HeadNode;
+		HeadNode->Prev = TrackNode;
+		HeadNode = TrackNode;
+		HeadNode->DATA = Data;
+		//Iterator HeadTracker
+		iterator_Head.Current = HeadNode;
+	}
+
+	template<class T>
+	inline void List<T>::InsertLast(T Data)
+	{
+		NodeLink<T>* TrackNode = new NodeLink<T>;
+		TrackNode->Next = nullptr;
+		TrackNode->Prev = CurrNode;
+		CurrNode->Next = TrackNode;
+		CurrNode = TrackNode;
+		NextLinkNode = CurrNode;
+		PrevLinkNode = CurrNode; //To Remove PrevLink Node Later...just discovered its an unecessary pointer...****TO DO LATER****
+		CurrNode->DATA = Data;
+	//Iterator TaleTracker
+		iterator_End.Current = CurrNode->Next;
+	}
+
+	template<class T>
+	inline void List<T>::DeleteElement(int pos)
+	{
+		NodeLink<T>* TrackNode = HeadNode;
+		NodeLink<T>* TrackAhead;
+		NodeLink<T>* TrackPrevious;
+
+		if (pos == 0)
+		{
+			PopFirst();
+		}
+		//??TO DO**** KEEP TRACK OF LENGTH OR NUMBER OF ELEMENT IN THE LIST*****
+		//TO DO***IF (POSITION) IS >= NUMBER OF ELEMENT OF THE LIST INSERTED DATA IN LAST POSITION OF THE LIST CHANGE <CURRLINKNODE,PREVLINKNODE,&NEXTLINKNODE DATA MEMBERS POSITION>
+		else
+		{
+			for (int i = 0; i <= pos; i++)
+			{
+				if (i == pos)
+				{
+					TrackAhead = TrackNode->Next;
+					TrackPrevious = TrackNode->Prev;
+					delete TrackNode;
+					TrackPrevious->Next = TrackAhead;
+					TrackAhead->Prev = TrackPrevious;
+				}
+
+				TrackNode = TrackNode->Next;
+			}
+		}
 	}
 
 	template <class T>
