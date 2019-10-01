@@ -116,7 +116,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Estl.h" />
-    <ClInclude Include="src\Btrees.h" />
+    <ClInclude Include="src\Btree.hpp" />
+    <ClInclude Include="src\Btree.h" />
     <ClInclude Include="src\LinkedList.h" />
     <ClInclude Include="src\LinkedList.hpp" />
     <ClInclude Include="src\Vector.hpp" />

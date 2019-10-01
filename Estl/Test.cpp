@@ -28,12 +28,7 @@ int main()
 
 		std::cout << m[0] << std::endl;
 
-		//***********************************REMINDERS********TO DO/TO FIX*******************************
-		//TODO create a --iterator, but first fix the link x.end() nullptr to a previous Node;
-		//??TO DO**** KEEP TRACK OF LENGTH OR NUMBER OF ELEMENT IN THE LIST*****
-		//TO DO***IF (POSITION) IS >= NUMBER OF ELEMENT OF THE LIST INSERTED DATA IN LAST POSITION OF THE LIST CHANGE <CURRLINKNODE,PREVLINKNODE,&NEXTLINKNODE DATA MEMBERS POSITION>
-		//To Remove PrevLink Node Later...just discovered its an unecessary pointer...****TO DO LATER****
-	
+		
 
 		Estl::Vector<std::string> vec(2);
 		vec.push_back("this is awesome");
@@ -43,6 +38,11 @@ int main()
 		vec.push_back("mind");
 
 		std::cout << vec[4] << std::endl;
+		Estl::Btree<int> Tree;
+		Tree.Insert(5);
+		Tree.Insert(7);
+		Tree.Insert(2);
+		Tree.Insert(5);
 
 		std::cin.get();
 }

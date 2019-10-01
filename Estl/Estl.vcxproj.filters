@@ -24,10 +24,13 @@
     <ClInclude Include="src\LinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Btrees.h">
+    <ClInclude Include="src\Vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector.hpp">
+    <ClInclude Include="src\Btree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Btree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
