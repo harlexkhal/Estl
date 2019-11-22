@@ -1,5 +1,5 @@
 #Directories
-
 .vs/
-Debug/
+bin/
+bin-int/
 *.user

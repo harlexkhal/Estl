@@ -2,8 +2,6 @@
 #include <cassert>
 #include <iostream>
 
-
-
 namespace Estl {
 	
 

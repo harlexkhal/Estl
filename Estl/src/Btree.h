@@ -15,7 +15,6 @@ namespace Estl {
 	template <class T>
 	class Btree
 	{
-
 	 public:
 		Btree();
 		~Btree();
@@ -34,13 +33,14 @@ namespace Estl {
 		void Delete(const T& m_Data);
 		void Search(const T& m_Data);
 	
-
-	protected:
-		Node<T>* Root;
 	private:
+		Node<T>* Root;
+		void PreorderTraversal(Node<T> *&P);
+		void InorderTraversal(Node<T> *&P);
+		void PostorderTraversal(Node<T> *&P);
 		void CopyTree(const Btree& Tree);
+		void DeleteNode(Node<T> *&P);
 		int Max(int x, int y);
-	
 	};
 
 	

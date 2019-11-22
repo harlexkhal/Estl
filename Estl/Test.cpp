@@ -2,10 +2,8 @@
 #include <string>
 #include "Estl.h"
 
-
 int main()
 {
-	
 		Estl::List<std::string> m;
 		m.PushBack("hello");
 		m.PushBack("cPP");
@@ -28,7 +26,12 @@ int main()
 
 		std::cout << m[0] << std::endl;
 
-		
+		std::string Array[] = { "F","L","A" };
+		Estl::BubbleSort(Array,3);
+		std::cout << Array[0] << std::endl;
+
+		Estl::SelectionSort(Array, 3);
+		std::cout << Array[1] << std::endl;
 
 		Estl::Vector<std::string> vec(2);
 		vec.push_back("this is awesome");
@@ -38,11 +41,14 @@ int main()
 		vec.push_back("mind");
 
 		std::cout << vec[4] << std::endl;
+
 		Estl::Btree<int> Tree;
 		Tree.Insert(5);
 		Tree.Insert(7);
 		Tree.Insert(2);
-		Tree.Insert(5);
-
+		Tree.InorderTraversal();
+		Tree.Delete(2);
+		Tree.PostorderTraversal();
+		
 		std::cin.get();
 }

@@ -1,6 +1,5 @@
 #pragma once
 
-
 namespace Estl
 {
 	template <typename T>
